@@ -4,9 +4,6 @@ export default function PrivacyFeatures() {
   return (
     <section className="bg-black py-20 px-4 text-white relative z-10">
       <div className="max-w-6xl mx-auto text-center">
-        {/* Gradient Line */}
-        <div className="h-1 w-20 mx-auto bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-400 mb-16 rounded-full" />
-
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Encrypted Storage */}

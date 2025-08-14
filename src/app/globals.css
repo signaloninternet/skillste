@@ -74,3 +74,21 @@ body {
   color: hsl(var(--foreground));
   font-family: var(--font-sans, Arial, sans-serif);
 }
+
+
+.hero-highlight::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: url('https://files.mastersunion.link/resources/svg/herosvg.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: 0;
+  bottom: -27%;
+  z-index: 1;
+}
+
+html, body {
+  overflow-x: hidden;
+}

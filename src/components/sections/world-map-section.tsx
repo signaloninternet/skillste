@@ -8,9 +8,6 @@ import { itemVariants } from "@/lib/framer-motion-variants";
 export function WorldMapSection() {
   return (
     <section className="py-20 text-center bg-black">
-      {/* Gradient line */}
-      <div className="h-1 w-[150px] md:w-[300px] mx-auto mb-12 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full" />
-
       <motion.div
         initial="hidden"
         whileInView="visible"

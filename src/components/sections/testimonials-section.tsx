@@ -1,99 +1,196 @@
 "use client";
-
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Zap,
+  ArrowUpRight,
+} from "lucide-react";
 import { Star } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { GradientLine } from "@/components/ui/gradient-line";
 import { containerVariants, itemVariants } from "@/lib/framer-motion-variants";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { MdOutlineArrowOutward } from "react-icons/md";
 
 export function TestimonialsSection() {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
   const testimonials = [
     {
-      stars: 5,
-      quote:
-        "This journal transformed my trading. The mistake tracking feature helped me identify patterns I wasn't aware of. My win rate went from 42% to 67% in just two months.",
-      name: "Raj Mehta",
-      title: "Day Trader - India",
-      avatar:
-        "https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=802&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      text: "This journal transformed my trading. The mistake tracking feature helped me identify patterns I wasn't aware of. My win rate went from 42% to 67% in just two months.",
+      author: "Raj Mehta",
+      role: "Day Trader - India",
     },
     {
-      stars: 5,
-      quote:
-        "The Monte Carlo simulator is a game-changer. I can now predict my account growth with much more accuracy and plan my strategies accordingly.",
-      name: "Sarah Johnson",
-      title: "Swing Trader - Dubai",
-      avatar:
-        "https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=802&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      text: "The Monte Carlo simulator is a game-changer. I can now predict my account growth with much more accuracy and plan my strategies accordingly.",
+      author: "Sarah Johnson",
+      role: "Swing Trader - Dubai",
     },
     {
-      stars: 5,
-      quote:
-        "As a crypto trader, I love how it handles all my leverage positions and calculates PnL correctly. The time-based analytics showed me I'm most profitable on Tuesdays!",
-      name: "Alex Chen",
-      title: "Crypto Trader - Singapore",
-      avatar:
-        "https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=802&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      text: "As a crypto trader, I love how it handles all my leverage positions and calculates PnL correctly. The time-based analytics showed me I'm most profitable on Tuesdays!",
+      author: "Alex Chen",
+      role: "Cypto Trader - Singapore",
+    },
+    {
+      text: "This journal transformed my trading. The mistake tracking feature helped me identify patterns I wasn't aware of. My win rate went from 42% to 67% in just two months.",
+      author: "Raj Mehta",
+      role: "Day Trader - India",
+    },
+    {
+      text: "The Monte Carlo simulator is a game-changer. I can now predict my account growth with much more accuracy and plan my strategies accordingly.",
+      author: "Sarah Johnson",
+      role: "Swing Trader - Dubai",
+    },
+    {
+      text: "As a crypto trader, I love how it handles all my leverage positions and calculates PnL correctly. The time-based analytics showed me I'm most profitable on Tuesdays!",
+      author: "Alex Chen",
+      role: "Cypto Trader - Singapore",
     },
   ];
 
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextTestimonial();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-20 bg-black">
-      {/* Gradient line */}
-      <div className="h-1 w-[150px] md:w-[300px] mx-auto mb-12 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full" />
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={containerVariants}
-        className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-      >
-        {testimonials.map((testimonial, i) => (
+    <section className="py-24 bg-black border-t border-white/10">
+      <div className=" max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            key={i}
-            variants={itemVariants}
-            className="rounded-2xl p-6 border border-white/10 bg-gradient-to-b from-zinc-900/70 to-zinc-800/60 shadow-md hover:shadow-accent-purple/30 transition-shadow duration-300 backdrop-blur"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="w-full h-full flex flex-col justify-between"
           >
-            <div className="flex flex-col items-start">
-              {/* Stars */}
-              <div className="flex mb-4">
-                {Array.from({ length: testimonial.stars }).map((_, idx) => (
-                  <Star
-                    key={idx}
-                    className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                  />
-                ))}
-              </div>
+            <h2 className="text-4xl text-bold md:text-5xl mb-12">
+              <span
+                className="
+    relative italic z-10 text-white lg:p-2 lg:mt-2 lg:mb-2
+    after:content-[''] after:absolute after:w-full after:h-1/2
+    after:bg-[url('https://files.mastersunion.link/resources/svg/herosvg.svg')]
+    after:bg-no-repeat after:bg-contain
+    after:left-0 after:-bottom-[27%] after:z-10
+  "
+              >
+                Testimonials
+              </span>
+            </h2>
 
-              {/* Quote */}
-              <p className="text-gray-300 text-base mb-6 italic leading-relaxed">
-                "{testimonial.quote}"
-              </p>
-
-              {/* Avatar & Info */}
-              <div className="flex items-center gap-3 mt-auto">
-                <Avatar>
-                  <AvatarImage
-                    src={testimonial.avatar || "/placeholder.svg"}
-                    alt={testimonial.name}
-                  />
-                  <AvatarFallback>
-                    {testimonial.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="font-semibold text-white">{testimonial.name}</p>
-                  <p className="text-sm text-gray-400">{testimonial.title}</p>
-                </div>
-              </div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-white text-white font-semibold rounded-full hover:bg-black  transition-colors duration-600"
+              >
+                Contact Us
+                <MdOutlineArrowOutward className="text-lg" />
+              </Link>
+            </motion.div>
           </motion.div>
-        ))}
-      </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentTestimonial}
+                initial={{ opacity: 0, y: 60, rotateX: -15 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, y: -60, rotateX: 15 }}
+                transition={{ duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }}
+                className="text-white"
+              >
+                <p className="text-xl leading-relaxed mb-12 text-gray-300">
+                  {testimonials[currentTestimonial].text}
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-6">
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-full flex items-center justify-center shadow-lg"
+                    >
+                      <span className="text-lg font-bold text-white">
+                        {testimonials[currentTestimonial].author
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </span>
+                    </motion.div>
+                    <div>
+                      <div className="font-semibold text-lg text-white">
+                        {testimonials[currentTestimonial].author}
+                      </div>
+                      <div className="text-gray-400">
+                        {testimonials[currentTestimonial].role}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <motion.button
+                      whileHover={{
+                        scale: 1.1,
+                        backgroundColor: "rgba(75, 85, 99, 1)",
+                      }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={prevTestimonial}
+                      className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{
+                        scale: 1.1,
+                        backgroundColor: "rgba(75, 85, 99, 1)",
+                      }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={nextTestimonial}
+                      className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
