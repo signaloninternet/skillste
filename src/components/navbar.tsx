@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,25 +47,25 @@ export default function Navbar() {
             }`}
           >
             <a
-              href="#"
+              href="/"
               className="text-gray-900 hover:text-purple-600 transition-colors font-medium"
             >
               Home
             </a>
             <a
-              href="#"
+              href="/about"
               className="text-gray-600 hover:text-purple-600 transition-colors"
             >
               About
             </a>
             <a
-              href="#"
+              href="/howitworks"
               className="text-gray-600 hover:text-purple-600 transition-colors"
             >
               How it Works
             </a>
             <a
-              href="#"
+              href="/services"
               className="text-gray-600 hover:text-purple-600 transition-colors"
             >
               Services
@@ -77,9 +78,11 @@ export default function Navbar() {
               scrolled ? "opacity-0 w-0 overflow-hidden" : "opacity-100 w-auto"
             }`}
           >
-            <Button className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-4 rounded-lg transition-all duration-300">
-              Join the waitlist
-            </Button>
+            <Link href="/auth">
+              <Button className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-4 rounded-lg transition-all duration-300">
+                Sign Up
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -106,33 +109,35 @@ export default function Navbar() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
               <a
-                href="#"
+                href="/"
                 className="block px-3 py-2 text-gray-900 hover:text-purple-600 transition-colors font-medium"
               >
                 Home
               </a>
               <a
-                href="#"
+                href="/about"
                 className="block px-3 py-2 text-gray-600 hover:text-purple-600 transition-colors"
               >
                 About
               </a>
               <a
-                href="#"
+                href="/howitworks"
                 className="block px-3 py-2 text-gray-600 hover:text-purple-600 transition-colors"
               >
                 How it Works
               </a>
               <a
-                href="#"
+                href="/services"
                 className="block px-3 py-2 text-gray-600 hover:text-purple-600 transition-colors"
               >
                 Services
               </a>
               <div className="px-3 py-2">
-                <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full transition-all duration-300">
-                  Join the waitlist
-                </Button>
+                <Link href="/auth">
+                  <Button className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-4 rounded-lg transition-all duration-300">
+                    Sign Up
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

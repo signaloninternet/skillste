@@ -110,7 +110,7 @@ export default function WhyChooseUs() {
             style={{ gridColumn: "span 3", gridRow: "span 1" }}
           >
             <div className="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mb-6">
-              <MessageSquare className="w-6 h-6" />
+              <MessageSquare className="w-6 h-6 text-black" />
             </div>
             <h3 className="text-xl font-semibold  text-white mb-4">
               Setup Checklist System

@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react"
 
 export function Header() {
   const navLinks = [
-    { name: "Home", href: "#" },
+    { name: "Home", href: "/" },
     { name: "Blog", href: "#" },
     { name: "Join Discord", href: "#" },
     { name: "Pricing", href: "#" },

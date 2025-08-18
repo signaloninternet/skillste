@@ -127,21 +127,22 @@ export default function SoftwareGlimpse() {
 
           <div className="text-center relative">
             <h2 className="text-4xl z-10 md:text-5xl font-bold pb-8 text-white">
-                          <span
-              className="
+              <span
+                className="
     relative italic z-10 text-white lg:p-2 lg:mt-2 lg:mb-2
     after:content-[''] after:absolute after:w-full after:h-1/2
     after:bg-[url('https://files.mastersunion.link/resources/svg/herosvg.svg')]
     after:bg-no-repeat after:bg-contain
     after:left-0 after:-bottom-[27%] after:z-10
   "
-            >
-              Glimpse {" "}
-            </span> of our software
+              >
+                Glimpse{" "}
+              </span>{" "}
+              of our software
             </h2>
             <p className="text-[#8987A1] z-10 mt-2 max-w-md pb-8 mx-auto">
-              Take a look at some of our recent projects to see how we've helped
-              businesses like yours succeed online.
+              Take a look at our software in action. We build trading easier
+              than ever before. Something you can rely on.
             </p>
           </div>
 

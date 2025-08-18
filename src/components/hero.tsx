@@ -84,10 +84,10 @@ export default function Hero() {
             transition={{ delay: 1, duration: 0.8 }}
           >
             <Link
-              href="#services"
+              href="/auth"
               className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-white text-white font-semibold rounded-full hover:bg-black  transition-colors duration-600"
             >
-              See How We Do Train
+              Sign Up Now
               <MdOutlineArrowOutward className="text-lg" />
             </Link>
           </motion.div>
